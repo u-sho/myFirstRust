@@ -11,13 +11,16 @@ fn guess_game () {
 
     let secret_num: u8  = get_u8_rand();
 
-    loop {
+    for counter in 1..7 {
+        println!("Try {}:", counter);
         let guess_num: u8 = get_u8_user_guess();
+
         output_game_result(secret_num, guess_num);
         if guess_num == secret_num {
-            break;
+            return;
         }
     }
+    println!("You Lose!");
 }
 
 fn get_u8_rand() -> u8 {
