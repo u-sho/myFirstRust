@@ -6,10 +6,10 @@ fn main() {
     guess_game();
 }
 
-fn guess_game () {
+fn guess_game() {
     println!("Guess the Secret Number!");
 
-    let secret_num: u8  = get_u8_rand();
+    let secret_num: u8 = get_u8_rand();
 
     for counter in 1..7 {
         println!("Try {}:", counter);
@@ -20,7 +20,9 @@ fn guess_game () {
             return;
         }
     }
-    println!("You Lose!");
+    println!("###############");
+    println!("## YOU LOSE! ##");
+    println!("###############");
 }
 
 fn get_u8_rand() -> u8 {
@@ -52,6 +54,10 @@ fn output_game_result(secret_num: u8, guess_num: u8) {
     match guess_num.cmp(&secret_num) {
         Ordering::Less => println!("Too small!"),
         Ordering::Greater => println!("Too big!"),
-        Ordering::Equal => println!("You win!")
+        Ordering::Equal => {
+            println!("###############");
+            println!("## YOU WIN!! ##");
+            println!("###############");
+        }
     }
 }
