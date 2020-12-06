@@ -12,8 +12,8 @@ fn guess_game() {
     let secret_num: u8 = get_u8_rand();
 
     for counter in 1..7 {
-        println!("Try {}:", counter);
-        let guess_num: u8 = get_u8_user_guess();
+        print!("Try {}: ", counter);
+        let guess_num: u8 = input_u8_user_guess();
 
         output_game_result(secret_num, guess_num);
         if guess_num == secret_num {
@@ -29,19 +29,19 @@ fn get_u8_rand() -> u8 {
     return rand::thread_rng().gen_range(0, 255);
 }
 
-fn get_u8_user_guess() -> u8 {
+fn input_u8_user_guess() -> u8 {
     println!("Please input your guess.");
 
     loop {
         let mut user_guess = String::new();
         io::stdin()
             .read_line(&mut user_guess)
-            .expect("Faild to readline");
+            .expect("Failed to read_line.");
 
         let user_guess: u8 = match user_guess.trim().parse() {
             Ok(num) => num,
             Err(_) => {
-                println!("Please input a integer from 0 to 255.");
+                println!("Please input an integer from 0 to 255.");
                 continue;
             }
         };
